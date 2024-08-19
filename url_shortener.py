@@ -1,10 +1,15 @@
 import requests
+import os
+from dotenv import load_dotenv
+
+
 
 def shorten_link(full_link, link_name):
-    API_KEY = 'fd1a526d2fffc71e2269f944f542f8ca48485'
+    load_dotenv()
+    KEY = os.getenv('API_KEY')
     BASE_URL = 'https://cutt.ly/api/api.php'
 
-    payload = {'key': API_KEY, 'short': full_link, 'name': link_name}
+    payload = {'key': KEY, 'short': full_link, 'name': link_name}
     request = requests.get(BASE_URL, params=payload)
     data = request.json()
 
